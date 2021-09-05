@@ -1,0 +1,24 @@
+{
+  "name": "deepc-fish-name-generator",
+  "version": "1.0.0",
+  "description": "Deepc Fish Name Generator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaWeRe/deepc-fish-name-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaWeRe/deepc-fish-name-generator/issues"
+  },
+  "homepage": "https://github.com/PaWeRe/deepc-fish-name-generator#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
