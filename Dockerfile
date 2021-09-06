@@ -13,3 +13,5 @@ COPY . /usr/src/app
 EXPOSE 3000
 
 CMD [ "npm", "start" ]
+
+--> See Digitalocean anleitung (kein extra container für txt file sondern teil des backends machen!)
