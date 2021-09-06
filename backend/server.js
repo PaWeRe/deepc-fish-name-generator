@@ -14,22 +14,27 @@ app.listen(port, () => {
     console.log(`Listening at http://${hostname}:${port}/getFishName`);
 });
 
+//Function making sure that each element of fish.txt is only used once
+function checkUniqueness(used_array, rand_element) {
+    return used_array.includes(`${rand_element}`)
+}
+
 //Defining GET request
 app.get("/getFishName", (req, res) => {
     pathname = path.join(__dirname, 'fish.txt');
     fs.readFile(pathname, async (err, data) => {
 
-        var fish_array = await data.toString('utf-8').split('\n'); //convert txt-file into array with utf-8 encoding
-        var rand_element = await Math.floor(Math.random() * fish_array.length);
+        var fish_array = data.toString('utf-8').split('\n'); //convert txt-file into array with utf-8 encoding
+        var rand_element = Math.floor(Math.random() * fish_array.length);
 
         //Making sure that name is not used twice (use promise to be able to store callback in variable used_names!)
-        var path_to_used_numbers = await path.join(__dirname, 'used_numbers.txt');
+        var path_to_used_numbers = path.join(__dirname, 'used_numbers.txt');
         var used_names = await fs.promises.readFile(path_to_used_numbers, 'utf-8');   
-        var used_array = await used_names.toString('utf-8').split(',');  
+        var used_array = used_names.toString('utf-8').split(',');  
 
         console.log(used_array);
         used_array.push(rand_element);
-        var existing = used_array.includes(`${rand_element}`);
+        var existing = checkUniqueness(used_array, rand_element);
         console.log(existing);
 
         if (!existing) {
@@ -39,9 +44,8 @@ app.get("/getFishName", (req, res) => {
 
             //Console logout
             console.log(fish_array[rand_element].toString('utf-8'));
-            //console.log(used_array.toString('utf-8'));
 
-            //Update external used_numbers.txt to make sure not
+            //Update external used_numbers.txt
             fs.writeFile(path_to_used_numbers, `${used_array}`, (err, data) => {
                 if (err) throw err;
                 console.log('Replaced!');
@@ -60,3 +64,8 @@ app.get("/getFishName", (req, res) => {
     });
 
 });
+
+module.exports = {
+    checkUniqueness,
+    app,
+};
