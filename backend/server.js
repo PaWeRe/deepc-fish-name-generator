@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+//const cors = require('cors');
 
 require('dotenv').config(); //serving environmental variables from .env file (can also be done directly in docker container (?))
 
@@ -8,6 +9,8 @@ const app = express();
 const port = process.env.PORT;
 const hostname = process.env.HOST;
 var used_names = [];
+
+//app.use(cors()); //For API call from react frontend
 
 //Starting server as callback
 app.listen(port, () => {

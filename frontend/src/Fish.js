@@ -1,6 +1,8 @@
 import React, { Component} from 'react'
 import axios from 'axios';
 
+//const apiUrl = `http://localhost:5000`;
+
 export default class Fish extends Component {
     constructor() {
         super();
@@ -9,7 +11,7 @@ export default class Fish extends Component {
         };
     }
 
-    //Not proper way of making api calls to backend - see https://www.youtube.com/watch?v=kJA9rDX7azM&list=RDCMUCoYzQqZNCRqqAomJwJ6yEdg&start_radio=1&rv=kJA9rDX7azM&t=562
+    //Alternatively use redux saga - https://www.youtube.com/watch?v=1K26DIKt3w8&list=RDCMUCoYzQqZNCRqqAomJwJ6yEdg&index=24
     handleButtonClick = () => {
         axios.get("/getFishName").then(response => {
             this.setState({
