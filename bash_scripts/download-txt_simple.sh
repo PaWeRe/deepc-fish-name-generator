@@ -1,14 +1,13 @@
-#!/usr/local/bin/...
+#!/bin/bash
 #web scraping fish names into local db
 
 curl=$(which curl)
-outfile="fish.txt"
+outfile="/Users/PWR/Documents/deepc-fish-name-generator/backend/fish_simple.txt"
 url="https://raw.githubusercontent.com/janelleshane/fish-common-names/master/fish.txt"
-path="../backend/"
 
 #dump webpage
 function dump_webpage() {
-    curl -o $outfile $url > $path
+    curl -o $outfile $url
 }
 
 #############
