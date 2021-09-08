@@ -27,6 +27,7 @@ app.get("/getFishName", (req, res) => {
     pathname = path.join(__dirname, 'fish.txt');
     fs.readFile(pathname, async (err, data) => {
 
+        //Picking random element from local database
         var fish_array = data.toString('utf-8').split('\n'); //convert txt-file into array with utf-8 encoding
         var rand_element = Math.floor(Math.random() * fish_array.length);
 
