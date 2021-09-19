@@ -13,7 +13,7 @@ export default class Fish extends Component {
 
     //Alternatively use redux saga - https://www.youtube.com/watch?v=1K26DIKt3w8&list=RDCMUCoYzQqZNCRqqAomJwJ6yEdg&index=24
     handleButtonClick = () => {
-        axios.get("/getFishName").then(response => {
+        axios.get("/api/getFishName").then(response => {
             this.setState({
                 fish: response.data
             });
