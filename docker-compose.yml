@@ -4,24 +4,24 @@ services:
 
   nginx:
     depends_on: 
-      - api
+      - server
       - client
     restart: always
     build:
-      dockefile: Dockerfile
+      dockerfile: Dockerfile
       context: ./nginx
     ports:
       - "3050:80"
 
-  backend:
+  server:
     env_file:
-        "./backend/.env"
+        "./server/.env"
     build:
       dockerfile: Dockerfile
-      context: ./backend
+      context: ./server
 
-  frontend:
+  client:
     stdin_open: true
     build:
       dockerfile: Dockerfile
-      context: ./frontend
+      context: ./client
