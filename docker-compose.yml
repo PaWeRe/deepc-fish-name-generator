@@ -1,21 +1,27 @@
 version: '3'
 
 services:
+
+  nginx:
+    depends_on: 
+      - api
+      - client
+    restart: always
+    build:
+      dockefile: Dockerfile
+      context: ./nginx
+    ports:
+      - "3050:80"
+
   backend:
     env_file:
         "./backend/.env"
     build:
+      dockerfile: Dockerfile
       context: ./backend
-      dockerfile: ./Dockerfile
-    image: "patrem98/deepc-fish-name-generator"
-    ports:
-      - "5000:5000"
+
   frontend:
+    stdin_open: true
     build:
+      dockerfile: Dockerfile
       context: ./frontend
-      dockerfile: ./Dockerfile
-    image: "patrem98/deepc-fish-name-generator"
-    ports:
-      - "3000:3000"
-    links:
-      - "backend" #Use the service name here, not the container name or id
